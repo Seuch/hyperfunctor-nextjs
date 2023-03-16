@@ -1,21 +1,18 @@
 import { InferGetStaticPropsType } from "next";
-import { Product } from "../../components/Product";
+import {
+  ProductListItem,
+  ProductListItemDetails,
+} from "../../components/Product";
 
 const ProductsPage = ({
   data,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
-    <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0">
+    <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
       {data.map((product) => {
         return (
           <li key={product.id}>
-            <Product
-              id={product.id}
-              description={product.description}
-              title={product.title}
-              price={product.price}
-              image={product.image}
-            />
+            <ProductListItem title={product.title} image={product.image} />
           </li>
         );
       })}
