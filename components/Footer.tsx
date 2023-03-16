@@ -1,6 +1,6 @@
 export const Footer = () => {
   return (
-    <footer className="bg-gray-600 max-w-7xl mx-auto w-full px-4 py-2">
+    <footer className="bg-gray-600 max-w-7xl mx-auto w-full px-4 py-2 text-white">
       Stopka
     </footer>
   );
