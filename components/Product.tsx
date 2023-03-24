@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 interface ProductDetailsProps {
   id: number;
   title: string;
@@ -6,10 +8,9 @@ interface ProductDetailsProps {
   image: string;
 }
 
-type ProductDetails = Pick<ProductDetailsProps, "title" | "image">;
+type ProductDetails = Pick<ProductDetailsProps, "id" | "title" | "image">;
 
 export const ProductListItemDetails = ({
-  id,
   title,
   price,
   description,
@@ -27,9 +28,11 @@ export const ProductListItemDetails = ({
 
 export const ProductListItem = (data: ProductDetails) => {
   return (
-    <div className="border-2 shadow-xl rounded">
-      <img className="w-full" src={data.image} alt={data.title} />
-      <p className="text-3xl font-bold p-4">{data.title}</p>
-    </div>
+    <Link href={`/products/${data.id}`}>
+      <div className="hover:shadow-xl w-5/6 h-full flex flex-col items-center">
+        <img className="w-5/6 h-2/3" src={data.image} alt={data.title} />
+        <p className="w-4/4 h-1/4 text-3xl font-bold p-4">{data.title}</p>
+      </div>
+    </Link>
   );
 };

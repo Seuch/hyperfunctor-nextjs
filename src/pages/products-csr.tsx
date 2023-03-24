@@ -1,4 +1,4 @@
-import { InferGetStaticPropsType } from "next";
+import { useRouter } from "next/router";
 import { useQuery } from "react-query";
 import { ProductListItemDetails } from "../../components/Product";
 
@@ -9,7 +9,9 @@ const getProducts = async () => {
 };
 
 const ProductsCSRPage = () => {
+  const router = useRouter();
   const { isLoading, data, error } = useQuery("products", getProducts);
+  console.log(router.query);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -38,17 +40,6 @@ const ProductsCSRPage = () => {
 };
 
 export default ProductsCSRPage;
-
-export const getStaticProps = async () => {
-  const res = await fetch("https://fakestoreapi.com/products/");
-  const data: StoreAPIProducts[] = await res.json();
-
-  return {
-    props: {
-      data,
-    },
-  };
-};
 
 interface StoreAPIProducts {
   id: number;
